@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Offline</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 40px;
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚠️ Ești offline</h1>
+  <p>Nu se poate încărca conținutul. Verifică conexiunea la internet.</p>
+</body>
+</html>
