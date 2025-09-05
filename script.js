@@ -273,6 +273,30 @@ function getAirQualityLevel(value, type) {
   }
 }
 
+function getAirQualityMessage(value, type) {
+  if (type === "pm25") {
+    if (value <= 12) return "Aer curat. Poți respira adânc fără griji! 🌿";
+    if (value <= 35) return "Calitate moderată. Persoanele sensibile ar trebui să evite efortul intens.";
+    if (value <= 55) return "Aer nesănătos. Evită activitățile în aer liber prelungite.";
+    return "Nivel periculos de particule fine! Stai în interior și evită expunerea. 🚨";
+  }
+
+  if (type === "pm10") {
+    if (value <= 20) return "Aer bun. Particulele grosiere sunt la un nivel sigur.";
+    if (value <= 50) return "Nivel moderat. Poate afecta persoanele cu afecțiuni respiratorii.";
+    if (value <= 100) return "Aer nesănătos. Poartă mască dacă ieși afară.";
+    return "Nivel periculos de PM10! Evită complet expunerea. 🛑";
+  }
+
+  if (type === "co") {
+    if (value <= 4) return "Nivel sigur de monoxid de carbon. 🌬️";
+    if (value <= 9) return "Nivel moderat de CO. Ventilează bine spațiile închise.";
+    return "Concentrație periculoasă de CO! Evită zonele aglomerate și închise. ⚠️";
+  }
+
+  return "Date indisponibile.";
+}
+
 function showAirQuality(components) {
   const pm25 = components.pm2_5;
   const pm10 = components.pm10;
@@ -282,10 +306,26 @@ function showAirQuality(components) {
   const pm10Level = getAirQualityLevel(pm10, "pm10");
   const coLevel = getAirQualityLevel(co, "co");
 
+  const pm25Msg = getAirQualityMessage(pm25, "pm25");
+  const pm10Msg = getAirQualityMessage(pm10, "pm10");
+  const coMsg = getAirQualityMessage(co, "co");
+
   const airText = `
- <span style="color:${pm25Level.color}">Particule fine (PM2.5): ${pm25} µg/m³ – ${pm25Level.level}</span><br>
-    <span style="color:${pm10Level.color}">Particule grosiere (PM10): ${pm10} µg/m³ – ${pm10Level.level}</span><br>
-    <span style="color:${coLevel.color}">Monoxid de carbon (CO): ${co} ppm – ${coLevel.level}</span>
+    <div class="air-block">
+      <h3>🌫️ Particule fine (PM2.5)</h3>
+      <p style="color:${pm25Level.color}">${pm25} µg/m³ – ${pm25Level.level}</p>
+      <p>${pm25Msg}</p>
+    </div>
+    <div class="air-block">
+      <h3>🌪️ Particule grosiere (PM10)</h3>
+      <p style="color:${pm10Level.color}">${pm10} µg/m³ – ${pm10Level.level}</p>
+      <p>${pm10Msg}</p>
+    </div>
+    <div class="air-block">
+      <h3>🧪 Monoxid de carbon (CO)</h3>
+      <p style="color:${coLevel.color}">${co} ppm – ${coLevel.level}</p>
+      <p>${coMsg}</p>
+    </div>
   `;
 
   document.getElementById("airResult").innerHTML = airText;
