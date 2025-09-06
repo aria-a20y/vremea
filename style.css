@@ -1,0 +1,261 @@
+
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+  width: 90%;
+  max-width: none;
+  transition: background-image 0.8s ease;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: auto;
+}
+
+.forecast-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 20px; /* ← padding lateral pentru a nu tăia primul card */
+  scroll-snap-type: x mandatory;
+}
+
+.forecast-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  min-width: 120px;
+  text-align: center;
+  font-size: 14px;
+  scroll-snap-align: start;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-width: 250px;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.alert-card {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alert-card.severe {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.alert-card.snow {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+.alert-card.heat {
+  background-color: #fce4ec;
+  color: #880e4f;
+  border-color: #f8bbd0;
+}
+
+.alert-card.fog {
+  background-color: #e0e0e0;
+  color: #424242;
+  border-color: #bdbdbd;
+}
+
+.weather-message {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.weekend {
+  background: #fff3e0;
+  border: 1px solid #ff9800;
+}
+
+.sun-times {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.today-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  width: 90%;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.element {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#weatherIconCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+#weatherEmoji {
+  font-size: 64px;
+  color: yellow;
+}
+
+input {
+  padding: 10px;
+  width: 80%;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #00796b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #004d40;
+}
+
+#weatherResult {
+  margin-top: 20px;
+}
+
+#savedCities {
+  margin-top: 30px;
+}
+
+#savedCities button {
+  background: #e0f2f1;
+  color: #00796b;
+  border: 1px solid #00796b;
+  margin: 3px;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+#savedCities button:last-child {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #c62828;
+  margin-top: 10px;
+}
+
+#uvResult, #airResult {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #444;
+  background: rgba(255,255,255,0.8);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.air-block {
+  background: rgba(255,255,255,0.9);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+#welcomeMessage {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 80%;
+  margin: 0 auto 5px auto;
+}
+
+@media (max-width: 500px) {
+  .forecast-card {
+    width: 90%;
+    max-width: none;
+    font-size: 13px;
+    padding: 15px;
+
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
