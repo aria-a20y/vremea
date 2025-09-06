@@ -244,7 +244,7 @@ label {
 
 @media (max-width: 600px) {
   .forecast-card {
-    width: 100%;
+    width: 90%;
     max-width: none;
     font-size: 13px;
     padding: 15px;
@@ -259,3 +259,4 @@ label {
     padding: 15px;
   }
 }
+
