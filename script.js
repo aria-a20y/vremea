@@ -227,31 +227,35 @@ const sunset = new Date((data.city.sunset + timezoneOffset) * 1000).toLocaleTime
 function getWeatherMessage(desc) {
   desc = desc.toLowerCase();
   if (desc.includes("senin")) return "☀️ Zi perfectă pentru plimbări!";
-  if (desc.includes("soare")) return "🌞 Nu uita ochelarii de soare!";
-  if (desc.includes("ploaie")) return "🌧️ Ia umbrela cu tine!";
-  if (desc.includes("ninsoare")) return "❄️ Îmbracă-te gros!";
   if (desc.includes("furtună")) return "⛈️ Stai în siguranță!";
-  return "🌈 O zi interesantă te așteaptă!";
+  if (desc.includes("ninsoare")) return "Ia-ți haine groase și ai grijă la drum!❄️";
+  if (desc.includes("ploaie")) return "Nu uita umbrela! ☔";
+  if (desc.includes("ceață")) return "Vizibilitate redusă – circulă cu atenție. 🌫️";
+
+  return "Verifică prognoza detaliată pentru mai multe informații.";
 }
 
 function setBackgroundImage(desc) {
-  desc = desc.toLowerCase();
-  const body = document.body;
+  desc = desc.toLowerCase();4
+const body = document.body;
 
-  const sunKeywords = ["senin", "soare", "luminos"];
-  const rainKeywords = ["ploaie", "averse", "furtună", "descărcări", "torențial"];
-  const cloudKeywords = ["nori", "noros", "înnorat", "acoperit", "fragmentat", "cer acoperit"];
-  const snowKeywords = ["ninsoare", "zăpadă", "fulgi", "viscol", "snow", "light snow", "heavy snow"];
+  const snowWords = ["ninsoare", "zăpadă", "viscol", "fulgi"];
+  const rainWords = ["ploaie", "averse", "burniță", "torențial"];
+  const fogWords = ["ceață", "vizibilitate redusă", "nor dens"];
+  const sunWords = ["soare", "senin", "cer senin", "parțial însorit"];
+  const stormWords = ["furtună", "descărcări electrice", "tunete", "fulgere"];
+  const cloudsWords = ["noros", "înnorat", "cer acoperit", "nori", "nori împrăștiați", "cer fragmentat"];
 
-  let image = "default.jpg";
-  if (sunKeywords.some(word => desc.includes(word))) image = "sunny.jpeg";
-  else if (rainKeywords.some(word => desc.includes(word))) image = "rainy.jpg";
-  else if (cloudKeywords.some(word => desc.includes(word))) image = "cloudy.jpg";
-  else if (snowKeywords.some(word => desc.includes(word))) image = "snow.jpg";
-
+ let image = "default.jpg";
+  if (snowWords.some(word => desc.includes(word))) image = "snow.jpg";
+  else if (rainWords.some(word => desc.includes(word))) image = "rainy.jpg";
+  else if (fogWords.some(word => desc.includes(word))) image = "fog.jpg";
+  else if (stormWords.some(word => desc.includes(word))) image = "storm.jpg";
+  else if (sunWords.some(word => desc.includes(word))) image = "sunny.jpg";
+  else if (cloudsWords.some(word => desc.includes(word))) image = "cloudy.jpg";
+  
   body.style.backgroundImage = `url('${image}')`;
 }
-
 
 function getAirQualityLevel(value, type) {
   if (type === "pm25") {
