@@ -242,7 +242,7 @@ label {
   margin: 0 auto 5px auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .forecast-card {
     width: 90%;
     max-width: none;
@@ -259,4 +259,5 @@ label {
     padding: 15px;
   }
 }
+
 
